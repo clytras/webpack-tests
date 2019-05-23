@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/nekdev/react-native-render-html.git
+	branch = master
+	commit = 7b0fd57939b4329f2f13af8846498bd7ad06b779
+	parent = a01330dbaa591354fe77563b9e48f0834147175c
+	method = merge
+	cmdver = 0.4.0
