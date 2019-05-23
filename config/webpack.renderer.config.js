@@ -9,6 +9,7 @@ module.exports = {
     filename: 'renderer.bundle.js'
   },
   devtool: false,
+  target: "electron-renderer",
   module: {
     rules: [
       {

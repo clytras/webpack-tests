@@ -1,18 +1,23 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+  entry: './src/tests.js',
+  output: {
+    filename: 'tests.bundle.js'
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
       },
-      {
+      /*{
         test: /.html$/,
         use: {
           loader: "html-loader",
@@ -24,7 +29,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, "css-loader"
         ]
-      }
+      }*/
     ]
   },
   resolve: {
@@ -32,11 +37,19 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new OptimizeCssAssetsPlugin({})
+      new TerserPlugin({
+        parallel: true,
+        sourceMap: true,
+        cache: true,
+        terserOptions: {
+          mangle: true
+        }
+      }),
+      //new OptimizeCssAssetsPlugin({})
     ]
   },
   plugins: [
-    new HtmlWebPackPlugin({
+    /*new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
       inject: false
@@ -44,6 +57,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    })*/
   ]
 }
